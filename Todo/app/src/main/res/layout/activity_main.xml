@@ -9,18 +9,7 @@
 
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="182dp"
-        android:layout_y="116dp"
-        android:text="Task"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#cc5566"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_x="117dp"
@@ -30,7 +19,7 @@
         android:textColor="#cc5566" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/idText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_x="88dp"
@@ -41,7 +30,7 @@
         android:textColor="#cc5566" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/registerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_x="204dp"
@@ -56,26 +45,27 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_x="132dp"
-        android:layout_y="85dp"
+        android:layout_x="145dp"
+        android:layout_y="87dp"
         android:text="Love"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#cc5566"
+        android:textColor="@color/colorAccent"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_x="132dp"
-        android:layout_y="116dp"
-        android:text="Your"
+        android:layout_x="145dp"
+        android:layout_y="118dp"
+        android:text="Your Task"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#cc5566"
+        android:textColor="@color/colorAccent"
         android:textStyle="bold" />
 
+
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/passwordText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_x="89dp"
