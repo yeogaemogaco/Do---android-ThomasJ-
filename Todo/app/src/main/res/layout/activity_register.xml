@@ -30,21 +30,6 @@
         android:textStyle="bold" />
 
 
-    <EditText
-        android:id="@+id/passwordText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="91dp"
-        android:layout_y="265dp"
-        android:alpha="0.4"
-        android:background="#ffff"
-        android:ems="10"
-        android:hint="password"
-        android:inputType="textPassword"
-
-        tools:layout_editor_absoluteX="83dp"
-        tools:layout_editor_absoluteY="131dp" />
-
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
@@ -56,6 +41,33 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
 
         />
+    <EditText
+        android:id="@+id/idText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="92dp"
+        android:layout_y="229dp"
+        android:alpha="0.4"
+        android:background="#ffff"
+        android:ems="10"
+        android:hint="id"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="83dp"
+        tools:layout_editor_absoluteY="250dp" />
+
+    <EditText
+        android:id="@+id/passwordText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="91dp"
+        android:layout_y="265dp"
+        android:alpha="0.4"
+        android:background="#ffff"
+        android:ems="10"
+        android:hint="password"
+        android:inputType="textPassword"
+        tools:layout_editor_absoluteX="83dp"
+        tools:layout_editor_absoluteY="131dp" />
 
     <EditText
         android:id="@+id/nameText"
@@ -71,28 +83,6 @@
         tools:layout_editor_absoluteX="83dp"
         tools:layout_editor_absoluteY="191dp" />
 
-    <EditText
-        android:id="@+id/idText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="92dp"
-        android:layout_y="229dp"
-        android:alpha="0.4"
-        android:background="#ffff"
-        android:ems="10"
-        android:hint="id"
-        android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="83dp"
-        tools:layout_editor_absoluteY="250dp" />
-
-    <TextView
-        android:id="@+id/registerButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="146dp"
-        android:layout_y="397dp"
-        android:text="R"
-        android:textAppearance="@style/TextAppearance.AppCompat.Button" />
 
     <TextView
         android:id="@+id/dismissButton"
@@ -102,4 +92,16 @@
         android:layout_y="397dp"
         android:text="N"
         android:textAppearance="@style/TextAppearance.AppCompat.Button" />
+
+    <Button
+        android:id="@+id/registerButton"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="49dp"
+        android:layout_height="35dp"
+        android:layout_x="119dp"
+        android:layout_y="388dp"
+        android:background="@android:color/transparent"
+        android:text="R"
+
+        />
 </AbsoluteLayout>
