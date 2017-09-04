@@ -32,7 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText nameText;
     TextView registerButton;
     TextView dismissButton;
-    private static final String Register_url = "http://ruddmsdl000@ruddmsdl000.cafe24.com/register.php";
+    private static final String Register_url = "http://ruddmsdl000.cafe24.com/register.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +61,7 @@ public class RegisterActivity extends AppCompatActivity {
             register(password,username,email);
     }
     public void register(String password, String name, String email) {
-        final String url_suffix = "?name="+name+"&password"+password+"&email"+email;
+        final String url_suffix = "?name="+name+"&password="+password+"&email="+email;
 
         class RegisterUser extends AsyncTask<String,Void,String> {
             ProgressDialog loading;
@@ -80,7 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             protected String doInBackground(String... params) {
                 String s = params[0];
-
+                Log.d("background",s);
                 BufferedReader bufferedReader = null;
 
                 try {
@@ -91,7 +91,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                     String result;
                     result = bufferedReader.readLine();
-
+                    Log.d("result",result);
                     return result;
                 }
                 catch (Exception e) {
@@ -101,6 +101,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         }
         RegisterUser ur = new RegisterUser();
+        Log.d("ur",url_suffix);
         ur.execute(url_suffix);
     }
 }
