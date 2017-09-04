@@ -41,8 +41,9 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
 
         />
+
     <EditText
-        android:id="@+id/idText"
+        android:id="@+id/id_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_x="92dp"
@@ -55,8 +56,9 @@
         tools:layout_editor_absoluteX="83dp"
         tools:layout_editor_absoluteY="250dp" />
 
+
     <EditText
-        android:id="@+id/passwordText"
+        android:id="@+id/id_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_x="91dp"
@@ -68,21 +70,6 @@
         android:inputType="textPassword"
         tools:layout_editor_absoluteX="83dp"
         tools:layout_editor_absoluteY="131dp" />
-
-    <EditText
-        android:id="@+id/nameText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="92dp"
-        android:layout_y="297dp"
-        android:alpha="0.4"
-        android:background="#ffff"
-        android:ems="10"
-        android:hint="name"
-        android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="83dp"
-        tools:layout_editor_absoluteY="191dp" />
-
 
     <TextView
         android:id="@+id/dismissButton"
@@ -104,4 +91,33 @@
         android:text="R"
 
         />
+
+    <EditText
+        android:id="@+id/confirmpasswordText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="91dp"
+        android:layout_y="297dp"
+        android:alpha="0.4"
+        android:background="#ffff"
+        android:ems="10"
+        android:hint="confirm password"
+        android:inputType="textPassword"
+        tools:layout_editor_absoluteX="83dp"
+        tools:layout_editor_absoluteY="131dp" />
+
+    <EditText
+        android:id="@+id/id_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="91dp"
+        android:layout_y="330dp"
+        android:alpha="0.4"
+        android:background="#ffff"
+        android:ems="10"
+        android:hint="name"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="83dp"
+        tools:layout_editor_absoluteY="191dp" />
+
 </AbsoluteLayout>
