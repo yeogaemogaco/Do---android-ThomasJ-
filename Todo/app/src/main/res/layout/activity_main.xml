@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:background="#E7D2CD"
+    tools:context="com.example.pc.todo.MainActivity"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://schemas.android.com/apk/res/android ">
+
+
+    <TextView android:id="@+id/loginButton" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:layout_x="117dp" android:layout_y="287dp"
+        android:text="Login" android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:textColor="#cc5566" />
+
+    <EditText android:id="@+id/idText" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:layout_x="88dp" android:layout_y="170dp"
+        android:ems="10" android:hint="id" android:inputType="textPersonName"
+        android:textColor="#cc5566" />
+
+    <TextView android:id="@+id/registerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:layout_x="204dp" android:layout_y="287dp"
+        android:text="Register"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:textColor="#cc5566"
+    />
+
+    <TextView android:id="@+id/textView3" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:layout_x="145dp" android:layout_y="87dp"
+        android:text="Love" android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/colorAccent" android:textStyle="bold" />
+
+    <TextView android:id="@+id/textView4" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:layout_x="145dp" android:layout_y="118dp"
+        android:text="Your Task" android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/colorAccent" android:textStyle="bold" />
+
+
+    <EditText android:id="@+id/passwordText" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:layout_x="89dp" android:layout_y="223dp"
+        android:ems="10" android:hint="password" android:inputType="textPassword"
+        android:textColor="#cc5566" />
+</AbsoluteLayout>
