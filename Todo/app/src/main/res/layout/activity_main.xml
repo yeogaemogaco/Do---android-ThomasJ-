@@ -13,9 +13,15 @@
         android:text="Login" android:textAppearance="@style/TextAppearance.AppCompat.Button"
         android:textColor="#cc5566" />
 
-    <EditText android:id="@+id/idText" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" android:layout_x="88dp" android:layout_y="170dp"
-        android:ems="10" android:hint="id" android:inputType="textPersonName"
+    <EditText
+        android:id="@+id/emailText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="88dp"
+        android:layout_y="170dp"
+        android:ems="10"
+        android:hint="email"
+        android:inputType="textPersonName"
         android:textColor="#cc5566" />
 
     <TextView android:id="@+id/registerButton"
