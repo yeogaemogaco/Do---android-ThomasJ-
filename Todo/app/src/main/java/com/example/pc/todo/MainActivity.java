@@ -44,12 +44,12 @@ public class MainActivity extends AppCompatActivity {
         registerButton = (TextView) findViewById(R.id.registerButton);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
-                                              @Override
-                                              public void onClick(View v) {
-                                                  Intent registerIntent = new Intent(MainActivity.this, RegisterActivity.class);
-                                                  MainActivity.this.startActivity(registerIntent);
+            @Override
+            public void onClick(View v) {
+                Intent registerIntent = new Intent(MainActivity.this, RegisterActivity.class);
+                MainActivity.this.startActivity(registerIntent);
 
-                                              }
+            }
                                           }
 
 
@@ -82,14 +82,14 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Invalid email or password", Toast.LENGTH_LONG);
                 }
             }
-        },
+            },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
 
                     }
 
-                }) {
+        }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params = new HashMap<>();
