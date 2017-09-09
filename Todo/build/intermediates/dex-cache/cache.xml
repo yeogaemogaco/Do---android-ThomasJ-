@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/ola/.android/build-cache/1ccebe6f961099b921f8ccce2500c07d7a62f1c6/output/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="032a4b53def5e2ceedfc2e793b126c0163cfa1dd">
+        <dex dex="/Users/ola/Documents/git/LoveYourTask---android/Todo/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_03533de24719a7d6205f577df84c251f2e4d75fb/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/ola/.android/build-cache/c9933a2ea42dc6ed1f938fd8511fbb948b0d0c63/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="f9b41622897665678d31d78e57a361cb0cebcb0d">
+        <dex dex="/Users/ola/Documents/git/LoveYourTask---android/Todo/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_2d17d8fd95776118a912100f22a299178eb4729a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/ola/.android/build-cache/e6f7fbf8b2bf3003c5ba285e7ed0c05258175ac6/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="f3ee23ef25c9a8fe3d40246d0b7097267963a612">
+        <dex dex="/Users/ola/Documents/git/LoveYourTask---android/Todo/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_16e2499d8bde88ed64dfa06d86ce377879f4473e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/ola/.android/build-cache/d19cdb27de0b97b3fcb847d5ba4bb7547a468448/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="00b0b7233e1ec64acebfac40d4983d32d4712426">
+        <dex dex="/Users/ola/Documents/git/LoveYourTask---android/Todo/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_5ed69272bf84fcc8a2a65b8e0558d04d95f68c11/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/ola/.android/build-cache/ea3d671004f9f0004f5a573b7121c13e35322d2d/output/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="045be695d968dd707691cc55d23746dbf8cf569a">
+        <dex dex="/Users/ola/Documents/git/LoveYourTask---android/Todo/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_2fbc25a190ab88881724a8b1da4e6eede7b1eb68/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/ola/.android/build-cache/b0289622c03b951f9fcd3ead8e1a627ba4eca4bf/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="c84e216d9bf618464d6b9564d71d9a656433e7c4">
+        <dex dex="/Users/ola/Documents/git/LoveYourTask---android/Todo/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_d9550cb6196292564e36e95cec087742e2a82fb9/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/ola/.android/build-cache/793f6dfe0f13f1fb003fb30ee596ec3237b7becd/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="beac40bcc8a320a896dd15f5109cfcaea5e1e0e3">
+        <dex dex="/Users/ola/Documents/git/LoveYourTask---android/Todo/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_ed155f3d21c5f5d6272e89f5f17795d75f6c861c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/ola/.android/build-cache/dab0be7a47814e843b8102f2a4a1b03198715a59/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="23eb0d2998a782213b56168cbf23a0688b9111d9">
+        <dex dex="/Users/ola/Documents/git/LoveYourTask---android/Todo/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_acac2e11d2ba6e290e36632c1665d93cefa6c45e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/ola/Documents/git/LoveYourTask---android/Todo/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/Users/ola/Documents/git/LoveYourTask---android/Todo/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_8a616b8adbff85fa56fbda2e7e784281c91df7ba/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/ola/.android/build-cache/ef8a0f06dd60954e81e2a7e23fd9e63e76a1c8aa/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="c3c638be6e650b165ab9ae144857b64e82787fad">
+        <dex dex="/Users/ola/Documents/git/LoveYourTask---android/Todo/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_ebac15c1a4e951a7b47c8b296b25c5bdc66d4b09/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/ola/.android/build-cache/578c8fbf5fe168cb95a6c4502d99e2ff5465a5c7/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="45f5eda279825ff470e3f51019d374d1ef61e000">
+        <dex dex="/Users/ola/Documents/git/LoveYourTask---android/Todo/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_a8b67eb13dd637b9c921f2829245a2246562d4c3/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/ola/.android/build-cache/b0289622c03b951f9fcd3ead8e1a627ba4eca4bf/output/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="6e02e34594ebe9c0501ffda8dd48497f81b82977">
+        <dex dex="/Users/ola/Documents/git/LoveYourTask---android/Todo/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_13dcf7d35a60cbdc44ac26c11b7bcc695cc625bd/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/ola/.android/build-cache/1ccebe6f961099b921f8ccce2500c07d7a62f1c6/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="d8bd2268fdcbfd52c76ade65d9900cd8def93a44">
+        <dex dex="/Users/ola/Documents/git/LoveYourTask---android/Todo/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f415731ffecb0623942b5bceda198dba8bb42729/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/ola/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.0/support-annotations-24.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="6be858a75633b1f0a2d24cad740db57775cb6871">
+        <dex dex="/Users/ola/Documents/git/LoveYourTask---android/Todo/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-24.2.0_e8358114c3a8f968e78d737554a7df0138c72f8b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/ola/.android/build-cache/b39a6c151355b659b3e6e64352f5181d249b980a/output/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="60d7b23621d31e6f42f4f76f16af467e57a20cda">
+        <dex dex="/Users/ola/Documents/git/LoveYourTask---android/Todo/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_430643c5ffeb1bcf794751bf2abc1602d2e7b483/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/ola/Documents/git/LoveYourTask---android/Todo/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="e987cf529e714f1a0da8064c298b02480c18bb3b">
+        <dex dex="/Users/ola/Documents/git/LoveYourTask---android/Todo/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_9fd63760e4e990a3c84336f4eca029fda042e240/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/ola/.android/build-cache/95f87a363820e8dd4459057144d8c6e5f4f7b498/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="c755536e5a100d9c76c8ea0b72f76c018f7a9de2">
+        <dex dex="/Users/ola/Documents/git/LoveYourTask---android/Todo/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_4bc8e03c4995164723d068f1db427aa57f4aabe5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/ola/.android/build-cache/b39a6c151355b659b3e6e64352f5181d249b980a/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="fcc945a86ebcbf527429acb8216ec7dae2c06417">
+        <dex dex="/Users/ola/Documents/git/LoveYourTask---android/Todo/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_76962586b0aceb2b8f1e114f9693758f455debb5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/ola/.android/build-cache/c9933a2ea42dc6ed1f938fd8511fbb948b0d0c63/output/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="771b3cc0e597b54da25f8086ba73180c59c6bc71">
+        <dex dex="/Users/ola/Documents/git/LoveYourTask---android/Todo/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_091ec6ac4c05cab50f3889e18bce981f0bc3c2a5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/ola/.android/build-cache/ea3d671004f9f0004f5a573b7121c13e35322d2d/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="6eb9107eb34d2fe2b020662b7fbbec991dcba846">
+        <dex dex="/Users/ola/Documents/git/LoveYourTask---android/Todo/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_a5ee65cd80fa3cf407bb1168423aa4fedd19e56f/classes.dex" />
+    </item>
+
+</items>

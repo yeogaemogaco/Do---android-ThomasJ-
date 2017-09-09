@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,86 +7,59 @@
     android:background="@color/colorPrimary"
     tools:context="com.example.pc.todo.RegisterActivity">
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="145dp"
-        android:layout_y="87dp"
-        android:text="Love"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/colorAccent"
-        android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="145dp"
-        android:layout_y="118dp"
-        android:text="Your Task"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/colorAccent"
-        android:textStyle="bold" />
-
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="122dp"
-        android:layout_y="167dp"
-        android:text="CREATE NEW ACCOUNT"
-        android:textColor="@color/colorAccent"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-
-        />
 
     <EditText
         android:id="@+id/id_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_x="92dp"
-        android:layout_y="229dp"
-        android:alpha="0.4"
+        android:alpha="0.7"
         android:background="#ffff"
         android:ems="10"
         android:hint="id"
-        android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="83dp"
-        tools:layout_editor_absoluteY="250dp" />
+        android:inputType="textEmailAddress"
+        android:layout_below="@+id/textView8"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp" />
 
 
     <EditText
         android:id="@+id/id_password"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_x="91dp"
-        android:layout_y="265dp"
-        android:alpha="0.4"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/id_email"
+        android:alpha="0.7"
         android:background="#ffff"
         android:ems="10"
         android:hint="password"
         android:inputType="textPassword"
-        tools:layout_editor_absoluteX="83dp"
-        tools:layout_editor_absoluteY="131dp" />
+        android:layout_alignLeft="@+id/id_email"
+        android:layout_alignStart="@+id/id_email"
+        android:layout_alignRight="@+id/id_email"
+        android:layout_alignEnd="@+id/id_email" />
 
     <TextView
         android:id="@+id/dismissButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_x="231dp"
-        android:layout_y="397dp"
+        android:layout_below="@+id/id_username"
+        android:layout_toRightOf="@+id/registerButton"
+        android:layout_alignRight="@+id/id_username"
+        android:gravity="center"
+        android:layout_alignBottom="@+id/registerButton"
         android:text="N"
         android:textAppearance="@style/TextAppearance.AppCompat.Button" />
 
     <Button
         android:id="@+id/registerButton"
         style="?android:attr/borderlessButtonStyle"
-        android:layout_width="49dp"
-        android:layout_height="35dp"
-        android:layout_x="119dp"
-        android:layout_y="388dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/id_username"
+        android:layout_alignLeft="@+id/id_username"
+
         android:background="@android:color/transparent"
         android:text="R"
 
@@ -96,9 +69,11 @@
         android:id="@+id/confirmpasswordText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_x="91dp"
-        android:layout_y="297dp"
-        android:alpha="0.4"
+        android:alpha="0.7"
+        android:layout_below="@+id/id_password"
+        android:layout_marginTop="15dp"
+        android:layout_alignLeft="@+id/id_password"
+        android:layout_alignRight="@+id/id_password"
         android:background="#ffff"
         android:ems="10"
         android:hint="confirm password"
@@ -110,9 +85,11 @@
         android:id="@+id/id_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_x="91dp"
-        android:layout_y="330dp"
-        android:alpha="0.4"
+        android:layout_below="@+id/confirmpasswordText"
+        android:layout_alignLeft="@+id/confirmpasswordText"
+        android:layout_alignRight="@+id/confirmpasswordText"
+        android:layout_marginTop="15dp"
+        android:alpha="0.7"
         android:background="#ffff"
         android:ems="10"
         android:hint="name"
@@ -120,4 +97,31 @@
         tools:layout_editor_absoluteX="83dp"
         tools:layout_editor_absoluteY="191dp" />
 
-</AbsoluteLayout>
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:text="LoveYourTask"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/colorAccent"
+        android:textSize="45dp"
+        android:textStyle="bold"
+         />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView3"
+        android:layout_marginTop="30dp"
+        android:text="CREATE NEW ACCOUNT"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:textColor="@color/colorAccent"
+        android:layout_alignLeft="@+id/id_email"
+        android:layout_alignStart="@+id/id_email"
+        android:layout_alignRight="@+id/id_email"
+        android:layout_alignEnd="@+id/id_email" />
+</RelativeLayout>
