@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-
     >
 
     <android.support.design.widget.CoordinatorLayout
@@ -51,6 +50,7 @@
             android:elevation="6dp"
             android:src="@drawable/circle"
             android:visibility="invisible" />
+            
     </android.support.design.widget.CoordinatorLayout>
 
 </android.support.v4.widget.DrawerLayout>
