@@ -35,7 +35,6 @@
             android:id="@+id/imageButton_remove"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/circle"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:background="@android:color/transparent"
