@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.DrawerLayout
     android:id="@+id/drawer_layout"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     >
-
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        />
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/coordinator"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimary"
         >
-
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
@@ -25,6 +30,7 @@
             android:layout_marginRight="16dp"
             android:backgroundTint="@color/colorAccent"
             android:src="@drawable/ic_action_add"
+            app:pressedTranslationZ="12dp"
             />
         <android.support.design.widget.FloatingActionButton
             android:layout_width="35dp"
@@ -37,6 +43,7 @@
             android:id="@+id/fab_groupadd"
             android:visibility="invisible"
             android:backgroundTint="@color/colorAccent"
+            app:pressedTranslationZ="12dp"
             />
 
         <android.support.design.widget.FloatingActionButton
@@ -49,8 +56,10 @@
             android:backgroundTint="@color/colorAccent"
             android:elevation="6dp"
             android:src="@drawable/circle"
-            android:visibility="invisible" />
-            
+            android:visibility="invisible"
+            app:pressedTranslationZ="12dp"
+            />
+
     </android.support.design.widget.CoordinatorLayout>
 
 </android.support.v4.widget.DrawerLayout>
