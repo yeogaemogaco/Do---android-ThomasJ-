@@ -91,7 +91,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                     String result;
                     result = bufferedReader.readLine();
-                    Log.d("result",result);
+                    //Log.d("result",result);
                     return result;
                 }
                 catch (Exception e) {

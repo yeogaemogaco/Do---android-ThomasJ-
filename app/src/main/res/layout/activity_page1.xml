@@ -46,11 +46,10 @@
             android:layout_gravity="bottom|end"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="90dp"
-            android:src="@drawable/circle"
             android:elevation="6dp"
             android:id="@+id/fab_groupadd"
             android:visibility="invisible"
-            android:backgroundTint="@color/colorAccent"
+            android:backgroundTint="@color/colorPrimaryDark"
             app:pressedTranslationZ="12dp"
             />
 
@@ -61,9 +60,8 @@
             android:layout_gravity="bottom|end"
             android:layout_marginBottom="150dp"
             android:layout_marginRight="16dp"
-            android:backgroundTint="@color/logincolor"
+            android:backgroundTint="@color/colorAccent"
             android:elevation="6dp"
-            android:src="@drawable/circle"
             android:visibility="invisible"
             app:pressedTranslationZ="12dp"
             />

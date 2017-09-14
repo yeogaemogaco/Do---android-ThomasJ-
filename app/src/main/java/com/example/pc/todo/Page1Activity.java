@@ -1,6 +1,8 @@
 package com.example.pc.todo;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,6 +29,7 @@ public class Page1Activity extends Activity {
     FloatingActionButton fab_add_group;
     Animation fab_close,fab_open,rotate_anticlock,rotate_clock;
     boolean isOpen = false;
+    Custom_Dialog dialog ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +42,7 @@ public class Page1Activity extends Activity {
         fab_open = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fab_open);
         rotate_anticlock  = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_anticlockwise);
         rotate_clock  = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_clockwise);
-
+        dialog = new Custom_Dialog();
         findViewById(R.id.fab_logout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,6 +50,14 @@ public class Page1Activity extends Activity {
                 SharedPreferenceManager.getInstance(getApplicationContext()).logout();
             }
         });
+        findViewById(R.id.fab_groupadd).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               dialog.show(getFragmentManager(),"test");
+
+            }
+        });
+
 
         RecyclerView recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
