@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                     editor.putBoolean(LOGGEDIN_SHARED_PREF, true);
                     editor.putString(EMAIL_SHARED_PRET, email);
 
-                    editor.commit();
+                    editor.apply();
                     Intent intent = new Intent(MainActivity.this, Page1Activity.class);
                     startActivity(intent);
                 } else {
