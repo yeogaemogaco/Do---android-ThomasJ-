@@ -3,17 +3,23 @@ package com.example.pc.todo;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +35,8 @@ public class Page1Activity extends Activity {
     FloatingActionButton fab_add_group;
     Animation fab_close,fab_open,rotate_anticlock,rotate_clock;
     boolean isOpen = false;
-    Custom_Dialog dialog ;
+    Button createButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +49,8 @@ public class Page1Activity extends Activity {
         fab_open = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fab_open);
         rotate_anticlock  = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_anticlockwise);
         rotate_clock  = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_clockwise);
-        dialog = new Custom_Dialog();
+
+
         findViewById(R.id.fab_logout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,19 +61,33 @@ public class Page1Activity extends Activity {
         findViewById(R.id.fab_groupadd).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               dialog.show(getFragmentManager(),"test");
+                AlertDialog.Builder builder = new AlertDialog.Builder(Page1Activity.this);
+                LayoutInflater inflater = getLayoutInflater();
+                View dialogView = inflater.inflate(R.layout.custom_dialog,null);
+                builder.setView(dialogView);
+                final AlertDialog dialog = builder.create();
+                createButton = (Button)dialogView.findViewById(R.id.create_button);
+                createButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.cancel();
+
+                    }
+                });
+                dialog.show();
 
             }
         });
 
 
+/*
         RecyclerView recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
 
 
         gaggeredGridLayoutManager = new StaggeredGridLayoutManager(3,1);
         recyclerView.setLayoutManager(gaggeredGridLayoutManager);
-
+*/
 
 
 
