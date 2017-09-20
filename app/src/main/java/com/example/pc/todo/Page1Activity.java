@@ -4,23 +4,32 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.ColorDrawable;
+import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +45,7 @@ public class Page1Activity extends Activity {
     Animation fab_close,fab_open,rotate_anticlock,rotate_clock;
     boolean isOpen = false;
     Button createButton;
-
+    EditText editGroupName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +58,7 @@ public class Page1Activity extends Activity {
         fab_open = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fab_open);
         rotate_anticlock  = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_anticlockwise);
         rotate_clock  = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_clockwise);
-
+        editGroupName = (EditText)findViewById(R.id.edit_groupname);
 
         findViewById(R.id.fab_logout).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +74,10 @@ public class Page1Activity extends Activity {
                 LayoutInflater inflater = getLayoutInflater();
                 View dialogView = inflater.inflate(R.layout.custom_dialog,null);
                 builder.setView(dialogView);
+
                 final AlertDialog dialog = builder.create();
+                dialog.getWindow().setBackgroundDrawable(
+                        new ColorDrawable(android.graphics.Color.TRANSPARENT));
                 createButton = (Button)dialogView.findViewById(R.id.create_button);
                 createButton.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -119,6 +131,16 @@ public class Page1Activity extends Activity {
         editor.apply();
         context.startActivity(new Intent(context, MainActivity.class));
     }
+
+    private void registerUser() {
+        String groupName = editGroupName.getText().toString();
+        //session 유지 되고 있는 user id를 가져오는 코드를 추후에 추가해야 한다
+        //
+       //  addGroupName(groupName);
+        }
+
+
+
 
 
     }
