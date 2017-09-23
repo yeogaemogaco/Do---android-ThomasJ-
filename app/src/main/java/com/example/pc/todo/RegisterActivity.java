@@ -58,6 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
             String username = nameText.getText().toString();
             String email = emailText.getText().toString();
             String password = passwordText.getText().toString();
+
             register(password,username,email);
     }
     public void register(String password, String name, String email) {

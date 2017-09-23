@@ -6,6 +6,7 @@ import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
@@ -44,21 +45,19 @@ public class Page1Activity extends Activity {
     FloatingActionButton fab_add_group;
     Animation fab_close,fab_open,rotate_anticlock,rotate_clock;
     boolean isOpen = false;
-    Button createButton;
-    EditText editGroupName;
+    private static final String groupcreate_url = "http://ruddmsdl000.cafe24.com/createnewgroup.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page1);
-        fab_main = (FloatingActionButton)findViewById(R.id.fab);
-        fab_logout = (FloatingActionButton)findViewById(R.id.fab_logout);
-        fab_add_group = (FloatingActionButton)findViewById(R.id.fab_groupadd);
-        fab_close = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fab_close);
-        fab_open = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fab_open);
-        rotate_anticlock  = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_anticlockwise);
-        rotate_clock  = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_clockwise);
-        editGroupName = (EditText)findViewById(R.id.edit_groupname);
+        fab_main = (FloatingActionButton) findViewById(R.id.fab);
+        fab_logout = (FloatingActionButton) findViewById(R.id.fab_logout);
+        fab_add_group = (FloatingActionButton) findViewById(R.id.fab_groupadd);
+        fab_close = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
+        fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
+        rotate_anticlock = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_anticlockwise);
+        rotate_clock = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_clockwise);
 
         findViewById(R.id.fab_logout).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,48 +71,44 @@ public class Page1Activity extends Activity {
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(Page1Activity.this);
                 LayoutInflater inflater = getLayoutInflater();
-                View dialogView = inflater.inflate(R.layout.custom_dialog,null);
+                View dialogView = inflater.inflate(R.layout.custom_dialog, null);
                 builder.setView(dialogView);
-
-                final AlertDialog dialog = builder.create();
+                AlertDialog dialog = builder.create();
                 dialog.getWindow().setBackgroundDrawable(
                         new ColorDrawable(android.graphics.Color.TRANSPARENT));
-                createButton = (Button)dialogView.findViewById(R.id.create_button);
+                dialog.show();
+                final EditText editGroupName = (EditText)dialog.findViewById(R.id.edit_groupname);
+                Button createButton = (Button)dialog.findViewById(R.id.create_button);
                 createButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        dialog.cancel();
+                        String groupName = editGroupName.getText().toString();
+                        if (groupName.isEmpty()){
+                            Toast.makeText(Page1Activity.this, "please enter new group name", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            String userEmail = MainActivity.EMAIL_SHARED_PRET;
+                            create(groupName,userEmail);
+                            editGroupName.setText("");
 
+                        }
+                        //Log.d("test",GroupName);
                     }
                 });
-                dialog.show();
 
             }
         });
 
-
-/*
-        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
-        recyclerView.setHasFixedSize(true);
-
-
-        gaggeredGridLayoutManager = new StaggeredGridLayoutManager(3,1);
-        recyclerView.setLayoutManager(gaggeredGridLayoutManager);
-*/
-
-
-
         fab_main.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(isOpen) {
+                if (isOpen) {
                     fab_add_group.startAnimation(fab_close);
                     fab_logout.startAnimation(fab_close);
                     fab_logout.setClickable(false);
                     fab_add_group.setClickable(false);
                     isOpen = false;
-                }
-                else {
+                } else {
                     fab_add_group.startAnimation(fab_open);
                     fab_logout.startAnimation(fab_open);
                     fab_logout.setClickable(true);
@@ -123,25 +118,53 @@ public class Page1Activity extends Activity {
             }
         });
     }
+    public void create(String name, String fcreate) {
+        final String url_suffix = "?name="+name+"&fcreate="+fcreate;
 
-    public void logout() {
-        sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.clear();
-        editor.apply();
-        context.startActivity(new Intent(context, MainActivity.class));
-    }
+        class CreateGroup extends AsyncTask<String,Void,String> {
+            ProgressDialog loading;
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+            }
 
-    private void registerUser() {
-        String groupName = editGroupName.getText().toString();
-        //session 유지 되고 있는 user id를 가져오는 코드를 추후에 추가해야 한다
-        //
-       //  addGroupName(groupName);
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPreExecute();
+            }
+            @Override
+            protected String doInBackground(String... params) {
+                String s = params[0];
+                  Log.d("background",s);
+                BufferedReader bufferedReader = null;
+
+                try {
+                    URL url = new URL(groupcreate_url+s);
+                    HttpURLConnection con = (HttpURLConnection)url.openConnection();
+
+                    bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+
+                    String result;
+                    result = bufferedReader.readLine();
+                    //Log.d("result",result);
+                    return result;
+                }
+                catch (Exception e) {
+                    return null;
+                }
+
+            }
         }
 
-
-
-
-
+        CreateGroup ur = new CreateGroup();
+        Log.d("ur*****",url_suffix);
+        ur.execute(url_suffix);
     }
+
+
+}
+
+
+
+
 
