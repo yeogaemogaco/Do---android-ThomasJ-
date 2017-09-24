@@ -46,7 +46,7 @@ public class Page1Activity extends Activity {
     Animation fab_close,fab_open,rotate_anticlock,rotate_clock;
     boolean isOpen = false;
     private static final String groupcreate_url = "http://ruddmsdl000.cafe24.com/createnewgroup.php";
-
+    public static String getEmail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +58,7 @@ public class Page1Activity extends Activity {
         fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
         rotate_anticlock = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_anticlockwise);
         rotate_clock = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_clockwise);
+
 
         findViewById(R.id.fab_logout).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,12 +88,15 @@ public class Page1Activity extends Activity {
                             Toast.makeText(Page1Activity.this, "please enter new group name", Toast.LENGTH_SHORT).show();
                         }
                         else {
-                            String userEmail = MainActivity.EMAIL_SHARED_PRET;
-                            create(groupName,userEmail);
+                            Log.d("cccc","ccccc");
+                            MainActivity m = new MainActivity();
+
+                             //getEmail = m.login()
+                            create(groupName,getEmail);
                             editGroupName.setText("");
 
                         }
-                        //Log.d("test",GroupName);
+
                     }
                 });
 
@@ -135,18 +139,15 @@ public class Page1Activity extends Activity {
             @Override
             protected String doInBackground(String... params) {
                 String s = params[0];
-                  Log.d("background",s);
+                 Log.d("background",s);
                 BufferedReader bufferedReader = null;
-
                 try {
                     URL url = new URL(groupcreate_url+s);
                     HttpURLConnection con = (HttpURLConnection)url.openConnection();
-
                     bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
-
                     String result;
                     result = bufferedReader.readLine();
-                    //Log.d("result",result);
+                    Log.d("result",result);
                     return result;
                 }
                 catch (Exception e) {
@@ -156,9 +157,10 @@ public class Page1Activity extends Activity {
             }
         }
 
-        CreateGroup ur = new CreateGroup();
-        Log.d("ur*****",url_suffix);
-        ur.execute(url_suffix);
+        CreateGroup creategroup = new CreateGroup();
+
+        creategroup.execute(url_suffix);
+        Log.d("3333333",url_suffix);
     }
 
 

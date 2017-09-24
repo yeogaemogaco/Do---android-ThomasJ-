@@ -81,7 +81,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             protected String doInBackground(String... params) {
                 String s = params[0];
-              //  Log.d("background",s);
+                Log.d("background",s);
                 BufferedReader bufferedReader = null;
 
                 try {

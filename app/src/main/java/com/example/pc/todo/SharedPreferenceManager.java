@@ -46,7 +46,7 @@ public class SharedPreferenceManager {
         mContext.startActivity(new Intent(mContext, MainActivity.class));
     }
 
-    public static String saveLoginDetails() {
+    /*public static String saveLoginDetails() {
         SharedPreferences sharedPreferences = mContext.getSharedPreferences("LoginDetails", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("Email", email);
@@ -55,5 +55,5 @@ public class SharedPreferenceManager {
         //Log.d("****",EMAIL_SHARED_PRET);
         //editor.commit();
     }
-
+*/
 }
