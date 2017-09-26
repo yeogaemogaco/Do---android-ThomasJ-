@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
@@ -24,6 +25,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,10 +38,14 @@ import java.util.List;
 
 import static com.example.pc.todo.MainActivity.SHARED_PREF_NAME;
 
-public class Page1Activity extends Activity {
+public class Page1Activity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
-    Context context;
-    private StaggeredGridLayoutManager gaggeredGridLayoutManager;
+    private Context mContext;
+    RelativeLayout mRelativeLayout;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+
     FloatingActionButton fab_main;
     FloatingActionButton fab_logout;
     FloatingActionButton fab_add_group;
@@ -58,6 +64,25 @@ public class Page1Activity extends Activity {
         fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
         rotate_anticlock = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_anticlockwise);
         rotate_clock = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_clockwise);
+        mContext = getApplicationContext();
+
+        String[] colors = {
+                "Red","Green","Blue","Yellow","Magenta","Cyan","Orange",
+                "Aqua","Azure","Beige","Bisque","Brown","Coral","Crimson"
+        };
+
+        mRelativeLayout = (RelativeLayout) findViewById(R.id.rl);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        mLayoutManager = new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL);
+        mAdapter = new GroupAdapter(mContext,colors);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        // Initialize a new instance of RecyclerView Adapter instance
+
+        // Set the adapter for RecyclerView
+        mRecyclerView.setAdapter(mAdapter);
+
+        //db에서 정보 가져와서 담기 !!!
 
 
         findViewById(R.id.fab_logout).setOnClickListener(new View.OnClickListener() {
@@ -156,9 +181,7 @@ public class Page1Activity extends Activity {
 
             }
         }
-
         CreateGroup creategroup = new CreateGroup();
-
         creategroup.execute(url_suffix);
         Log.d("3333333",url_suffix);
     }

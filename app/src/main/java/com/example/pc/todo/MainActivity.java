@@ -3,11 +3,12 @@ package com.example.pc.todo;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +22,7 @@ import com.android.volley.toolbox.Volley;
 
 import java.util.HashMap;
 import java.util.Map;
+
 
 public class MainActivity extends AppCompatActivity {
     public static final String LOGIN_URL = "http://ruddmsdl000.cafe24.com/Login.php";
@@ -122,14 +124,16 @@ public class MainActivity extends AppCompatActivity {
         Page1Activity p = new Page1Activity();
         p.getEmail = currentUserEmail;
         if(loggedIn) {
-
             Intent intent = new Intent(MainActivity.this, Page1Activity.class);
             startActivity(intent);
-
-
         }
 
     }
+
+
+    /**
+     * Created by ola on 25/09/2017.
+     */
 
 
 }

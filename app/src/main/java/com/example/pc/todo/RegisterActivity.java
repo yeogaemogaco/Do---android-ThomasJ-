@@ -71,7 +71,6 @@ public class RegisterActivity extends AppCompatActivity {
                 super.onPreExecute();
                 loading = ProgressDialog.show(RegisterActivity.this, "please wait",null,true,true);
             }
-
             @Override
             protected void onPostExecute(String s) {
                 super.onPreExecute();
@@ -87,9 +86,7 @@ public class RegisterActivity extends AppCompatActivity {
                 try {
                     URL url = new URL(Register_url+s);
                     HttpURLConnection con = (HttpURLConnection)url.openConnection();
-
                     bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
-
                     String result;
                     result = bufferedReader.readLine();
                     //Log.d("result",result);
@@ -98,11 +95,10 @@ public class RegisterActivity extends AppCompatActivity {
                 catch (Exception e) {
                     return null;
                 }
-
             }
         }
         RegisterUser ur = new RegisterUser();
-        Log.d("ur",url_suffix);
+        //Log.d("ur",url_suffix);
         ur.execute(url_suffix);
     }
 }
