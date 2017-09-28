@@ -35,8 +35,6 @@ import java.nio.charset.Charset;
  */
 
 public class TodoActivity extends Activity {
-    //public static final String JSON_STRING = "{\"result\":{\"id\":\"name\",\"fcreate\":56000}}";
-    String JSON_STRING;
     public static TextView test;
     Button testButton;
 
@@ -50,14 +48,11 @@ public class TodoActivity extends Activity {
         testButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FetchData process = new FetchData();
-                process.execute();
+                //FetchData process = new FetchData();
+                //process.execute();
 
             }
         });
-    }
-    public void getJSON(View view) {
-//        new JsonTask().execute();
     }
 
 

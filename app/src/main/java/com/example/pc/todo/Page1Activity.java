@@ -64,7 +64,9 @@ public class Page1Activity extends AppCompatActivity {
     boolean isOpen = false;
     public static String getEmail;
     public static String[] colors;
-    FetchData process = new FetchData();
+    public static int colorsLength;
+    FetchData process;
+    public static String tmp;
     private static final String groupcreate_url = "http://ruddmsdl000.cafe24.com/createnewgroup.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,11 +80,15 @@ public class Page1Activity extends AppCompatActivity {
         rotate_anticlock = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_anticlockwise);
         rotate_clock = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_clockwise);
         mContext = getApplicationContext();
-        //process.execute();
-        colors = new String[]{"Red", "Green", "Blue", "Yellow", "Magenta", "Cyan", "Orange",
-                "Aqua", "Azure", "Beige", "Bisque", "Brown", "Coral", "Crimson"
-        };
+        process = new FetchData();
 
+        process.execute();
+        colors = new String[10];
+       // colors = process.colors;
+        //Log.d("aaaa",colors[3]);
+       // colors = new String[1000];
+       // colors = process.colors;
+//        Log.d("please...",colors[2]);
         mRelativeLayout = (RelativeLayout) findViewById(R.id.rl);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
@@ -96,7 +102,6 @@ public class Page1Activity extends AppCompatActivity {
 
         //db에서 정보 가져와서 담기 !!!
 
-        //Log.d("::::::",getEmail);
 
         findViewById(R.id.fab_logout).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,10 +130,8 @@ public class Page1Activity extends AppCompatActivity {
                         if (groupName.isEmpty()) {
                             Toast.makeText(Page1Activity.this, "please enter new group name", Toast.LENGTH_SHORT).show();
                         } else {
-                            Log.d("cccc", "ccccc");
-                            MainActivity m = new MainActivity();
 
-                            //getEmail = m.login()
+
                             create(groupName, getEmail);
                             editGroupName.setText("");
 
@@ -177,7 +180,7 @@ public class Page1Activity extends AppCompatActivity {
             @Override
             protected String doInBackground(String... params) {
                 String s = params[0];
-                Log.d("background",s);
+                //Log.d("background",s);
                 BufferedReader bufferedReader = null;
                 try {
                     URL url = new URL(groupcreate_url+s);
@@ -185,7 +188,7 @@ public class Page1Activity extends AppCompatActivity {
                     bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
                     String result;
                     result = bufferedReader.readLine();
-                    Log.d("result",result);
+
                     return result;
                 }
                 catch (Exception e) {
@@ -196,10 +199,19 @@ public class Page1Activity extends AppCompatActivity {
         }
         CreateGroup creategroup = new CreateGroup();
         creategroup.execute(url_suffix);
-        Log.d("3333333",url_suffix);
+
     }
 
+    public static String[] toStringArray(JSONArray array) {
+        if(array==null)
+            return null;
 
+        String[] arr=new String[array.length()];
+        for(int i=0; i<arr.length; i++) {
+            arr[i]=array.optString(i);
+        }
+        return arr;
+    }
 }
 
 

@@ -26,15 +26,27 @@ public class FetchData extends AsyncTask<Void, Void,String> {
     String data="";
     String dataParsed="";
     String singleParsed="";
+    Page1Activity p;
+    String[] colors;
+    Page1Activity pageView;
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+      pageView = new Page1Activity();
+
+    }
+
     @Override
     protected String doInBackground(Void... voids) {
         URL url = null;
+
         StringBuilder stringBuilder = null;
         try {
             url = new URL(json_url);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             InputStream inputStream = connection.getInputStream();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            StringBuffer sb = new StringBuffer();
             String line = "";
             //stringBuilder = new StringBuilder();
             while ((line) != null) {
@@ -42,15 +54,28 @@ public class FetchData extends AsyncTask<Void, Void,String> {
                 data = data + line;
             }
             JSONArray JsonArray = new JSONObject(data).getJSONArray("result");
-
-
+            String email = p.getEmail;
+            int count = 0;
             for(int i=0;i<JsonArray.length();i++){
-
                 JSONObject JsonObject = JsonArray.getJSONObject(i);
-                singleParsed = "name:"+JsonObject.get("name")+"\n";
+                String fcreate = (String) JsonObject.get("fcreate");
+                this.colors = pageView.toStringArray(JsonArray);
+                if(email.equals(fcreate)) {
+                    singleParsed = (String) JsonObject.get("name");
+                    pageView.colors[i] = singleParsed;
+                    Log.d("****",pageView.colors[i]);
+                    dataParsed = dataParsed + singleParsed;
+                }
+                else {
 
-                dataParsed = dataParsed+singleParsed;
+                    continue;
+                }
+                //pageView.colors =this.colors ;
+
             }
+            //pageView.colorsLength = colors.length;
+
+
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -67,10 +92,12 @@ public class FetchData extends AsyncTask<Void, Void,String> {
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
-     TodoActivity.test.setText(this.dataParsed);
+        //TodoActivity.test.setText(this.dataParsed);
 
-
+       // Page1Activity.colors = this.colors;
 
     }
+
+
 
 }
