@@ -29,9 +29,22 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,14 +58,19 @@ public class Page1Activity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    //URL to get JSON Array
 
+
+    JSONArray user = null;
     FloatingActionButton fab_main;
     FloatingActionButton fab_logout;
     FloatingActionButton fab_add_group;
     Animation fab_close,fab_open,rotate_anticlock,rotate_clock;
     boolean isOpen = false;
+    private static String groupJSONurl = "http://ruddmsdl000.cafe24.com/GroupFromDb.php";
     private static final String groupcreate_url = "http://ruddmsdl000.cafe24.com/createnewgroup.php";
     public static String getEmail;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +101,7 @@ public class Page1Activity extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
 
         //db에서 정보 가져와서 담기 !!!
+
 
 
         findViewById(R.id.fab_logout).setOnClickListener(new View.OnClickListener() {
@@ -117,7 +136,6 @@ public class Page1Activity extends AppCompatActivity {
                             MainActivity m = new MainActivity();
 
                              //getEmail = m.login()
-                            create(groupName,getEmail);
                             editGroupName.setText("");
 
                         }
@@ -146,44 +164,6 @@ public class Page1Activity extends AppCompatActivity {
                 }
             }
         });
-    }
-    public void create(String name, String fcreate) {
-        final String url_suffix = "?name="+name+"&fcreate="+fcreate;
-
-        class CreateGroup extends AsyncTask<String,Void,String> {
-            ProgressDialog loading;
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-            }
-
-            @Override
-            protected void onPostExecute(String s) {
-                super.onPreExecute();
-            }
-            @Override
-            protected String doInBackground(String... params) {
-                String s = params[0];
-                 Log.d("background",s);
-                BufferedReader bufferedReader = null;
-                try {
-                    URL url = new URL(groupcreate_url+s);
-                    HttpURLConnection con = (HttpURLConnection)url.openConnection();
-                    bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
-                    String result;
-                    result = bufferedReader.readLine();
-                    Log.d("result",result);
-                    return result;
-                }
-                catch (Exception e) {
-                    return null;
-                }
-
-            }
-        }
-        CreateGroup creategroup = new CreateGroup();
-        creategroup.execute(url_suffix);
-        Log.d("3333333",url_suffix);
     }
 
 
