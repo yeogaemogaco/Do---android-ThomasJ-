@@ -47,9 +47,8 @@ public class FetchData extends AsyncTask<Void, Void,String> {
             for(int i=0;i<JsonArray.length();i++){
 
                 JSONObject JsonObject = JsonArray.getJSONObject(i);
-                singleParsed = "id:"+JsonObject.get("id")+"\n"+
-                                "name:"+JsonObject.get("name")+"\n"+
-                                "fcreate:"+JsonObject.get("fcreate")+"\n";;
+                singleParsed = "name:"+JsonObject.get("name")+"\n";
+
                 dataParsed = dataParsed+singleParsed;
             }
         } catch (MalformedURLException e) {

@@ -24,13 +24,10 @@ public class GroupHolder extends RecyclerView.ViewHolder implements View.OnClick
         super(itemView);
         itemView.setOnClickListener(this);
         textView = (TextView) itemView.findViewById(R.id.tv);
-        //mTextView = (TextView)itemView.findViewById(R.id.tv);
     }
 
     @Override
     public void onClick(View view) {
-        //Todo View를 객체화 시켜서 각각 불러와야 함
-
         Intent intent = new Intent(view.getContext(),TodoActivity.class);
         view.getContext().startActivity(intent,null);
 

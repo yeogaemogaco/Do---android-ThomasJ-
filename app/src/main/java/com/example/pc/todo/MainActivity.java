@@ -120,9 +120,10 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
         loggedIn = sharedPreferences.getBoolean(LOGGEDIN_SHARED_PREF, false);
         currentUserEmail = sharedPreferences.getString("pref_userEmail","n/a");
-        Log.d("currentEmail",currentUserEmail);
+        //Log.d("currentEmail",currentUserEmail);
         Page1Activity p = new Page1Activity();
         p.getEmail = currentUserEmail;
+
         if(loggedIn) {
             Intent intent = new Intent(MainActivity.this, Page1Activity.class);
             startActivity(intent);

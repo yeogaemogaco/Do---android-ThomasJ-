@@ -65,7 +65,7 @@ public class Page1Activity extends AppCompatActivity {
     public static String getEmail;
     public static String[] colors;
     FetchData process = new FetchData();
-
+    private static final String groupcreate_url = "http://ruddmsdl000.cafe24.com/createnewgroup.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,15 +78,15 @@ public class Page1Activity extends AppCompatActivity {
         rotate_anticlock = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_anticlockwise);
         rotate_clock = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_clockwise);
         mContext = getApplicationContext();
-       //process.execute();
-         colors = new String[]{"Red", "Green", "Blue", "Yellow", "Magenta", "Cyan", "Orange",
-                 "Aqua", "Azure", "Beige", "Bisque", "Brown", "Coral", "Crimson"
-         };
+        //process.execute();
+        colors = new String[]{"Red", "Green", "Blue", "Yellow", "Magenta", "Cyan", "Orange",
+                "Aqua", "Azure", "Beige", "Bisque", "Brown", "Coral", "Crimson"
+        };
 
         mRelativeLayout = (RelativeLayout) findViewById(R.id.rl);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        mLayoutManager = new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL);
-        mAdapter = new GroupAdapter(mContext,colors);
+        mLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
+        mAdapter = new GroupAdapter(mContext, colors);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // Initialize a new instance of RecyclerView Adapter instance
@@ -96,7 +96,7 @@ public class Page1Activity extends AppCompatActivity {
 
         //db에서 정보 가져와서 담기 !!!
 
-
+        //Log.d("::::::",getEmail);
 
         findViewById(R.id.fab_logout).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,23 +116,24 @@ public class Page1Activity extends AppCompatActivity {
                 dialog.getWindow().setBackgroundDrawable(
                         new ColorDrawable(android.graphics.Color.TRANSPARENT));
                 dialog.show();
-                final EditText editGroupName = (EditText)dialog.findViewById(R.id.edit_groupname);
-                Button createButton = (Button)dialog.findViewById(R.id.create_button);
+                final EditText editGroupName = (EditText) dialog.findViewById(R.id.edit_groupname);
+                Button createButton = (Button) dialog.findViewById(R.id.create_button);
                 createButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         String groupName = editGroupName.getText().toString();
-                        if (groupName.isEmpty()){
+                        if (groupName.isEmpty()) {
                             Toast.makeText(Page1Activity.this, "please enter new group name", Toast.LENGTH_SHORT).show();
-                        }
-                        else {
-                            Log.d("cccc","ccccc");
+                        } else {
+                            Log.d("cccc", "ccccc");
                             MainActivity m = new MainActivity();
 
-                             //getEmail = m.login()
+                            //getEmail = m.login()
+                            create(groupName, getEmail);
                             editGroupName.setText("");
 
                         }
+
 
                     }
                 });
@@ -158,13 +159,52 @@ public class Page1Activity extends AppCompatActivity {
                 }
             }
         });
+    }
+    public void create(String name, String fcreate) {
+        final String url_suffix = "?name="+name+"&fcreate="+fcreate;
 
+        class CreateGroup extends AsyncTask<String,Void,String> {
+            ProgressDialog loading;
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+            }
 
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPreExecute();
+            }
+            @Override
+            protected String doInBackground(String... params) {
+                String s = params[0];
+                Log.d("background",s);
+                BufferedReader bufferedReader = null;
+                try {
+                    URL url = new URL(groupcreate_url+s);
+                    HttpURLConnection con = (HttpURLConnection)url.openConnection();
+                    bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                    String result;
+                    result = bufferedReader.readLine();
+                    Log.d("result",result);
+                    return result;
+                }
+                catch (Exception e) {
+                    return null;
+                }
+
+            }
+        }
+        CreateGroup creategroup = new CreateGroup();
+        creategroup.execute(url_suffix);
+        Log.d("3333333",url_suffix);
     }
 
 
-
 }
+
+
+
+
 
 
 
