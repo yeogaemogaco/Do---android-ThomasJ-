@@ -1,7 +1,12 @@
 package com.example.pc.todo;
 
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.TextView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,7 +23,9 @@ import java.net.URL;
 
 public class FetchData extends AsyncTask<Void, Void,String> {
     String json_url = "http://ruddmsdl000.cafe24.com/groupFromDb.php";
-    String data;
+    String data="";
+    String dataParsed="";
+    String singleParsed="";
     @Override
     protected String doInBackground(Void... voids) {
         URL url = null;
@@ -34,10 +41,22 @@ public class FetchData extends AsyncTask<Void, Void,String> {
                 line = bufferedReader.readLine();
                 data = data + line;
             }
+            JSONArray JsonArray = new JSONObject(data).getJSONArray("result");
 
+
+            for(int i=0;i<JsonArray.length();i++){
+
+                JSONObject JsonObject = JsonArray.getJSONObject(i);
+                singleParsed = "id:"+JsonObject.get("id")+"\n"+
+                                "name:"+JsonObject.get("name")+"\n"+
+                                "fcreate:"+JsonObject.get("fcreate")+"\n";;
+                dataParsed = dataParsed+singleParsed;
+            }
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
             e.printStackTrace();
         }
 
@@ -49,6 +68,10 @@ public class FetchData extends AsyncTask<Void, Void,String> {
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
-       TodoActivity.test.setText(this.data);
+     TodoActivity.test.setText(this.dataParsed);
+
+
+
     }
+
 }

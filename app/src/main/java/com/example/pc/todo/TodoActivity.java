@@ -44,7 +44,7 @@ public class TodoActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todo);
-        test = (TextView)findViewById(R.id.test);
+        test = (TextView)findViewById(R.id.test) ;
         testButton = (Button) findViewById(R.id.testButton);
 
         testButton.setOnClickListener(new View.OnClickListener() {

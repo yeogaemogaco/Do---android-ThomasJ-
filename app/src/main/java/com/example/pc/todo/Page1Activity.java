@@ -52,24 +52,19 @@ import java.util.List;
 import static com.example.pc.todo.MainActivity.SHARED_PREF_NAME;
 
 public class Page1Activity extends AppCompatActivity {
-    SharedPreferences sharedPreferences;
     private Context mContext;
     RelativeLayout mRelativeLayout;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    //URL to get JSON Array
-
-
-    JSONArray user = null;
     FloatingActionButton fab_main;
     FloatingActionButton fab_logout;
     FloatingActionButton fab_add_group;
     Animation fab_close,fab_open,rotate_anticlock,rotate_clock;
     boolean isOpen = false;
-    private static String groupJSONurl = "http://ruddmsdl000.cafe24.com/GroupFromDb.php";
-    private static final String groupcreate_url = "http://ruddmsdl000.cafe24.com/createnewgroup.php";
     public static String getEmail;
+    public static String[] colors;
+    FetchData process = new FetchData();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,11 +78,10 @@ public class Page1Activity extends AppCompatActivity {
         rotate_anticlock = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_anticlockwise);
         rotate_clock = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_clockwise);
         mContext = getApplicationContext();
-
-        String[] colors = {
-                "Red","Green","Blue","Yellow","Magenta","Cyan","Orange",
-                "Aqua","Azure","Beige","Bisque","Brown","Coral","Crimson"
-        };
+       //process.execute();
+         colors = new String[]{"Red", "Green", "Blue", "Yellow", "Magenta", "Cyan", "Orange",
+                 "Aqua", "Azure", "Beige", "Bisque", "Brown", "Coral", "Crimson"
+         };
 
         mRelativeLayout = (RelativeLayout) findViewById(R.id.rl);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
@@ -164,7 +158,10 @@ public class Page1Activity extends AppCompatActivity {
                 }
             }
         });
+
+
     }
+
 
 
 }
