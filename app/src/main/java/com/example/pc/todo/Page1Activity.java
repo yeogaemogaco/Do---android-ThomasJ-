@@ -7,7 +7,6 @@ import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -50,9 +49,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.pc.todo.MainActivity.SHARED_PREF_NAME;
+import static com.example.pc.todo.MainActivity.colorsLength;
 
 public class Page1Activity extends AppCompatActivity {
     private Context mContext;
+    final String url_suffix = "?fcreate="+MainActivity.currentUserEmail;
     RelativeLayout mRelativeLayout;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -63,11 +64,13 @@ public class Page1Activity extends AppCompatActivity {
     Animation fab_close,fab_open,rotate_anticlock,rotate_clock;
     boolean isOpen = false;
     public static String getEmail;
-    public static String[] colors;
-    public static int colorsLength;
     FetchData process;
+    public static String[] colors;
     public static String tmp;
+    MainActivity m;
     private static final String groupcreate_url = "http://ruddmsdl000.cafe24.com/createnewgroup.php";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,9 +84,10 @@ public class Page1Activity extends AppCompatActivity {
         rotate_clock = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_clockwise);
         mContext = getApplicationContext();
         process = new FetchData();
-
-        process.execute();
-        colors = new String[10];
+        process.execute(url_suffix);
+        //colorsLength = process.colorsLength;
+        //Log.d("@@@", String.valueOf(colorsLength));
+        colors = new String[100];
        // colors = process.colors;
         //Log.d("aaaa",colors[3]);
        // colors = new String[1000];
@@ -95,13 +99,7 @@ public class Page1Activity extends AppCompatActivity {
         mAdapter = new GroupAdapter(mContext, colors);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        // Initialize a new instance of RecyclerView Adapter instance
-
-        // Set the adapter for RecyclerView
         mRecyclerView.setAdapter(mAdapter);
-
-        //db에서 정보 가져와서 담기 !!!
-
 
         findViewById(R.id.fab_logout).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,8 +116,7 @@ public class Page1Activity extends AppCompatActivity {
                 View dialogView = inflater.inflate(R.layout.custom_dialog, null);
                 builder.setView(dialogView);
                 AlertDialog dialog = builder.create();
-                dialog.getWindow().setBackgroundDrawable(
-                        new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
                 dialog.show();
                 final EditText editGroupName = (EditText) dialog.findViewById(R.id.edit_groupname);
                 Button createButton = (Button) dialog.findViewById(R.id.create_button);
@@ -130,10 +127,9 @@ public class Page1Activity extends AppCompatActivity {
                         if (groupName.isEmpty()) {
                             Toast.makeText(Page1Activity.this, "please enter new group name", Toast.LENGTH_SHORT).show();
                         } else {
-
-
-                            create(groupName, getEmail);
+                             create(groupName, getEmail);
                             editGroupName.setText("");
+                            //FetchData.colorsLength+=1;
 
                         }
 
@@ -199,9 +195,7 @@ public class Page1Activity extends AppCompatActivity {
         }
         CreateGroup creategroup = new CreateGroup();
         creategroup.execute(url_suffix);
-
-    }
-
+  }
     public static String[] toStringArray(JSONArray array) {
         if(array==null)
             return null;
@@ -212,6 +206,8 @@ public class Page1Activity extends AppCompatActivity {
         }
         return arr;
     }
+
+
 }
 
 

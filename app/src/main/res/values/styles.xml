@@ -16,4 +16,8 @@
         <item name="android:backgroundDimEnabled">false</item>
         <item name="android:windowNoTitle">true</item>
     </style>
+    <style name="WhiteRadioButton" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorControlNormal">@android:color/white</item>
+        <item name="colorControlActivated">@android:color/white</item>
+    </style>
 </resources>

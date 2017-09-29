@@ -20,6 +20,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
     public static final String KEY_PASSWORD = "password";
     public static final String LOGIN_SUCCESS = "success";
     public static final String SHARED_PREF_NAME = "tech";
-    public static final String EMAIL_SHARED_PRET = "email";
     public static final String LOGGEDIN_SHARED_PREF = "loggedin";
     public static  String currentUserEmail;
     private TextView emailText;
@@ -39,7 +40,11 @@ public class MainActivity extends AppCompatActivity {
     private TextView registerButton;
     private boolean loggedIn = false;
     SharedPreferences sharedPreferences;
-
+    FetchData process;
+    Page1Activity p;
+    public static String[] tmp;
+    final String url_suffix = "?fcreate="+currentUserEmail;
+    public static int colorsLength;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,24 +54,19 @@ public class MainActivity extends AppCompatActivity {
         loginButton = (TextView) findViewById(R.id.loginButton);
         registerButton = (TextView) findViewById(R.id.registerButton);
         sharedPreferences = MainActivity.this.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-
         registerButton.setOnClickListener(new View.OnClickListener() {
                                               @Override
                                               public void onClick(View v) {
                                                   Intent registerIntent = new Intent(MainActivity.this, RegisterActivity.class);
                                                   MainActivity.this.startActivity(registerIntent);
-
                                               }
                                           }
-
-
         );
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
                 login();
-
             }
         });
     };
@@ -74,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
         final String email = emailText.getText().toString();
         final String password = passwordText.getText().toString();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, LOGIN_URL,new Response.Listener<String>(){
-
             @Override
             public void onResponse(String response) {
                 if (response.trim().equalsIgnoreCase(LOGIN_SUCCESS)) {
@@ -82,10 +81,10 @@ public class MainActivity extends AppCompatActivity {
                     editor.putString("pref_userEmail", email);
                     editor.commit();
                     currentUserEmail = sharedPreferences.getString("pref_userEmail","n/a");
-                    Page1Activity p = new Page1Activity();
+                     p = new Page1Activity();
                     p.getEmail = currentUserEmail;
                     //String tmp = getUserEmail(currentUserEmail);
-                    Log.d("?????/",p.getEmail);
+                    //Log.d("?????/",p.getEmail);
                     editor.putBoolean(LOGGEDIN_SHARED_PREF, true);
                     editor.apply();
                     Intent intent = new Intent(MainActivity.this, Page1Activity.class);
@@ -98,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
                     }
 
                 }) {
@@ -112,7 +110,6 @@ public class MainActivity extends AppCompatActivity {
         };
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
-
     }
     @Override
     protected void onResume() {
@@ -126,16 +123,9 @@ public class MainActivity extends AppCompatActivity {
 
         if(loggedIn) {
             Intent intent = new Intent(MainActivity.this, Page1Activity.class);
+
             startActivity(intent);
         }
-
     }
-
-
-    /**
-     * Created by ola on 25/09/2017.
-     */
-
-
 }
 

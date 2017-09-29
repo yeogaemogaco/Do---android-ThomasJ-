@@ -19,18 +19,15 @@ import java.util.Random;
 
 public class GroupAdapter extends RecyclerView.Adapter<GroupHolder> {
     private String[] mDataSet;
-    private Context mContext;
+    public static Context mContext;
     private Random mRandom = new Random();
 
     public GroupAdapter(Context context,String[] DataSet){
         mDataSet = DataSet;
         mContext = context;
-
     }
-
     @Override
     public GroupHolder onCreateViewHolder(ViewGroup parent, int viewType){
-        // Create a new View
         View v = LayoutInflater.from(mContext).inflate(R.layout.custom_view,parent,false);
         GroupHolder vh = new GroupHolder(v);
         return vh;
@@ -44,7 +41,8 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupHolder> {
 
     @Override
     public int getItemCount(){
-        return mDataSet.length;
+
+        return FetchData.colorsLength;
     }
 
     // Custom method to get a random number between a range

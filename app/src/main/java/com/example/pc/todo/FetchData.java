@@ -21,7 +21,7 @@ import java.net.URL;
  */
 
 
-public class FetchData extends AsyncTask<Void, Void,String> {
+public class FetchData extends AsyncTask<String, Void,String> {
     String json_url = "http://ruddmsdl000.cafe24.com/groupFromDb.php";
     String data="";
     String dataParsed="";
@@ -29,20 +29,19 @@ public class FetchData extends AsyncTask<Void, Void,String> {
     Page1Activity p;
     String[] colors;
     Page1Activity pageView;
+    MainActivity m;
+    JSONObject JsonObject;
+    public static int colorsLength;
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-      pageView = new Page1Activity();
-
     }
-
-    @Override
-    protected String doInBackground(Void... voids) {
+  @Override
+    protected String doInBackground(String... params) {
         URL url = null;
-
-        StringBuilder stringBuilder = null;
+        String s= params[0];
         try {
-            url = new URL(json_url);
+            url = new URL(json_url+s);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             InputStream inputStream = connection.getInputStream();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
@@ -54,25 +53,30 @@ public class FetchData extends AsyncTask<Void, Void,String> {
                 data = data + line;
             }
             JSONArray JsonArray = new JSONObject(data).getJSONArray("result");
-            String email = p.getEmail;
-            int count = 0;
+            //String email = p.getEmail;
+
+
+
             for(int i=0;i<JsonArray.length();i++){
-                JSONObject JsonObject = JsonArray.getJSONObject(i);
-                String fcreate = (String) JsonObject.get("fcreate");
+                JsonObject = JsonArray.getJSONObject(i);
+                //String fcreate = (String) JsonObject.get("fcreate");
                 this.colors = pageView.toStringArray(JsonArray);
-                if(email.equals(fcreate)) {
+                //if(email.equals(fcreate)) {
                     singleParsed = (String) JsonObject.get("name");
                     pageView.colors[i] = singleParsed;
-                    Log.d("****",pageView.colors[i]);
+                    //Log.d("****",m.tmp[i]);
                     dataParsed = dataParsed + singleParsed;
-                }
-                else {
+               // }
 
-                    continue;
-                }
                 //pageView.colors =this.colors ;
 
+
             }
+            colorsLength = JsonArray.length();
+            //Page1Activity.colorsLength = this.colorsLength;
+            Log.d("4444", String.valueOf(colorsLength));
+
+            //colorsLength = JsonArray.length();
             //pageView.colorsLength = colors.length;
 
 
@@ -84,14 +88,14 @@ public class FetchData extends AsyncTask<Void, Void,String> {
             e.printStackTrace();
         }
 
-        return null;
 
+        return null;
     }
 
 
     @Override
-    protected void onPostExecute(String result) {
-        super.onPostExecute(result);
+    protected void onPostExecute(String s) {
+        super.onPreExecute();
         //TodoActivity.test.setText(this.dataParsed);
 
        // Page1Activity.colors = this.colors;

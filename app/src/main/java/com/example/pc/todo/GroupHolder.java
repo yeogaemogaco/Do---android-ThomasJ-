@@ -20,6 +20,7 @@ import static android.support.v4.app.ActivityCompat.startActivity;
 
 public class GroupHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
     public TextView textView;
+    Context context;
     public GroupHolder(View itemView) {
         super(itemView);
         itemView.setOnClickListener(this);
@@ -28,8 +29,9 @@ public class GroupHolder extends RecyclerView.ViewHolder implements View.OnClick
 
     @Override
     public void onClick(View view) {
-        Intent intent = new Intent(view.getContext(),TodoActivity.class);
-        view.getContext().startActivity(intent,null);
+        this.context = GroupAdapter.mContext;
+        Intent intent = new Intent(context,TodoActivity.class);
+        context.startActivity(intent);
 
     }
 

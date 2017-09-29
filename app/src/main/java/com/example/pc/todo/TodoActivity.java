@@ -1,62 +1,92 @@
 package com.example.pc.todo;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
-import android.util.StringBuilderPrinter;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
+import android.widget.ListView;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.apache.commons.io.FileUtils;
 
-import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.StringReader;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.nio.charset.Charset;
+import java.util.ArrayList;
 
 /**
- * Created by ola on 26/09/2017.
+ * Created by ola on 30/09/2017.
  */
 
-public class TodoActivity extends Activity {
-    public static TextView test;
-    Button testButton;
-
+public class TodoActivity extends Activity{
+    private ArrayList<String> items;
+    private ArrayAdapter<String> itemsAdapter;
+    private ListView lvItems;
+    public Button addButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todo);
-        test = (TextView)findViewById(R.id.test) ;
-        testButton = (Button) findViewById(R.id.testButton);
+        lvItems = (ListView) findViewById(R.id.lvItems);
+        items = new ArrayList<String>();
+        readItems();
 
-        testButton.setOnClickListener(new View.OnClickListener() {
+        itemsAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, items);
+        lvItems.setAdapter(itemsAdapter);
+        items.add("First Item");
+        items.add("Second Item");
+        addButton = (Button)findViewById(R.id.btnAddItem);
+        addButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                //FetchData process = new FetchData();
-                //process.execute();
-
+            public void onClick(View view) {
+                onAddItem(view);
             }
         });
+        setupListViewListener();
+
     }
 
+    public void onAddItem(View v) {
+        EditText etNewItem = (EditText) findViewById(R.id.etNewItem);
+        String itemText = etNewItem.getText().toString();
+        itemsAdapter.add(itemText);
+        etNewItem.setText("");
+        writeItems();
+    }
+    private void setupListViewListener() {
+        lvItems.setOnItemLongClickListener(
+                new AdapterView.OnItemLongClickListener() {
+                    @Override
+                    public boolean onItemLongClick(AdapterView<?> adapter,
+                                                   View item, int pos, long id) {
+                        items.remove(pos);
+                        itemsAdapter.notifyDataSetChanged();
 
+                        writeItems();
+                        return true;
+                    }
 
+                });
+    }
+    private void readItems() {
+        File filesDir = getFilesDir();
+        File todoFile = new File(filesDir, "todo.txt");
+        try {
+            items = new ArrayList<String>(FileUtils.readLines(todoFile));
+        } catch (IOException e) {
+            items = new ArrayList<String>();
+        }
+    }
+
+    private void writeItems() {
+        File filesDir = getFilesDir();
+        File todoFile = new File(filesDir, "todo.txt");
+        try {
+            FileUtils.writeLines(todoFile, items);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
-
-
