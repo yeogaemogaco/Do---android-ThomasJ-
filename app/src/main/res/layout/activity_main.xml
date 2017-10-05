@@ -29,14 +29,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Login"
-        android:layout_marginLeft="50dp"
+        android:layout_marginLeft="52dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
         android:textColor="@color/colorAccent"
         android:textStyle="italic"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/textView"
-        android:layout_alignStart="@+id/textView"
-        android:layout_marginStart="50dp" />
+        android:layout_marginStart="52dp"
+        android:layout_below="@+id/passwordText"
+        android:layout_alignLeft="@+id/passwordText"
+        android:layout_alignStart="@+id/passwordText"
+        android:layout_marginTop="21dp" />
 
     <TextView android:id="@+id/registerButton"
         android:layout_width="wrap_content"
@@ -56,15 +57,18 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="50dp"
-        android:layout_below="@+id/loveyourtaskText"
+        android:layout_marginTop="49dp"
         android:textColor="@color/colorAccent"
-        android:text="Please enter your Email and Password to login."
+        android:text="       Please enter your Email and
+        Password to login."
         android:gravity="left"
-        android:textSize="10dp"
+        android:textSize="20dp"
         android:textStyle="italic"
-        />
+        android:layout_below="@+id/loveyourtaskText"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignLeft="@+id/emailText"
+        android:layout_alignStart="@+id/emailText" />
 
     <EditText
         android:id="@+id/passwordText"

@@ -2,6 +2,7 @@ package com.example.pc.todo;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -35,8 +36,10 @@ public class TodoActivity extends Activity{
         itemsAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, items);
         lvItems.setAdapter(itemsAdapter);
-        items.add("First Item");
-        items.add("Second Item");
+        items.add("clean my room");
+        items.add("cook");
+        items.add("go to bank");
+
         addButton = (Button)findViewById(R.id.btnAddItem);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,6 +47,7 @@ public class TodoActivity extends Activity{
                 onAddItem(view);
             }
         });
+
         setupListViewListener();
 
     }

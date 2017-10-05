@@ -4,15 +4,11 @@ package com.example.pc.todo;
  * Created by ola on 25/09/2017.
  */
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Random;
 
@@ -35,9 +31,14 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupHolder> {
 
     @Override
     public void onBindViewHolder(GroupHolder holder, int position) {
+        //int count = position%9;
         holder.textView.setText(mDataSet[position]);
         holder.textView.getLayoutParams().height = getRandomIntInRange(250,200);
+        //holder.itemView.setBackgroundColor(Color.YELLOW);
+
     }
+
+
 
     @Override
     public int getItemCount(){
@@ -49,5 +50,6 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupHolder> {
     protected int getRandomIntInRange(int max, int min){
         return mRandom.nextInt((max-min)+min)+min;
     }
+
 
 }

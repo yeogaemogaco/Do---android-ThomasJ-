@@ -57,6 +57,7 @@ public class Page1Activity extends AppCompatActivity {
     RelativeLayout mRelativeLayout;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
+//    private RecyclerView.ViewHolder mHolder;
     private RecyclerView.LayoutManager mLayoutManager;
     FloatingActionButton fab_main;
     FloatingActionButton fab_logout;
@@ -68,9 +69,8 @@ public class Page1Activity extends AppCompatActivity {
     public static String[] colors;
     public static String tmp;
     MainActivity m;
+    String groupName;
     private static final String groupcreate_url = "http://ruddmsdl000.cafe24.com/createnewgroup.php";
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,19 +86,15 @@ public class Page1Activity extends AppCompatActivity {
         process = new FetchData();
         process.execute(url_suffix);
         //colorsLength = process.colorsLength;
-        //Log.d("@@@", String.valueOf(colorsLength));
+        Log.d("@@@", String.valueOf(colorsLength));
         colors = new String[100];
-       // colors = process.colors;
-        //Log.d("aaaa",colors[3]);
-       // colors = new String[1000];
-       // colors = process.colors;
-//        Log.d("please...",colors[2]);
+
         mRelativeLayout = (RelativeLayout) findViewById(R.id.rl);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
         mAdapter = new GroupAdapter(mContext, colors);
         mRecyclerView.setLayoutManager(mLayoutManager);
-
+        //List<ItemObjects> gaggeredList = getListItemData();
         mRecyclerView.setAdapter(mAdapter);
 
         findViewById(R.id.fab_logout).setOnClickListener(new View.OnClickListener() {
@@ -123,13 +119,15 @@ public class Page1Activity extends AppCompatActivity {
                 createButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        String groupName = editGroupName.getText().toString();
+                       groupName = editGroupName.getText().toString();
                         if (groupName.isEmpty()) {
                             Toast.makeText(Page1Activity.this, "please enter new group name", Toast.LENGTH_SHORT).show();
                         } else {
-                             create(groupName, getEmail);
+                            create(groupName, getEmail);
                             editGroupName.setText("");
-                            //FetchData.colorsLength+=1;
+                            finish();
+                            startActivity(getIntent());
+
 
                         }
 
@@ -158,6 +156,8 @@ public class Page1Activity extends AppCompatActivity {
                 }
             }
         });
+
+
     }
     public void create(String name, String fcreate) {
         final String url_suffix = "?name="+name+"&fcreate="+fcreate;
@@ -196,6 +196,9 @@ public class Page1Activity extends AppCompatActivity {
         CreateGroup creategroup = new CreateGroup();
         creategroup.execute(url_suffix);
   }
+    private void writeItems() {
+        create(groupName, getEmail);
+    }
     public static String[] toStringArray(JSONArray array) {
         if(array==null)
             return null;
@@ -208,7 +211,8 @@ public class Page1Activity extends AppCompatActivity {
     }
 
 
-}
+
+    }
 
 
 
