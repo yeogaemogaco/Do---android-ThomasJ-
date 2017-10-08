@@ -2,7 +2,6 @@ package com.example.pc.todo;
 
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,17 +15,15 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-/**
- * Created by ola on 28/09/2017.
- */
-
 
 public class FetchData extends AsyncTask<String, Void,String> {
     String json_url = "http://ruddmsdl000.cafe24.com/groupFromDb.php";
     String data="";
     String dataParsed="";
     String singleParsed="";
+    String idParsed = "";
     Page1Activity p;
+    String groupid = "";
     String[] colors;
     Page1Activity pageView;
     MainActivity m;
@@ -47,37 +44,20 @@ public class FetchData extends AsyncTask<String, Void,String> {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
             StringBuffer sb = new StringBuffer();
             String line = "";
-            //stringBuilder = new StringBuilder();
             while ((line) != null) {
                 line = bufferedReader.readLine();
                 data = data + line;
             }
             JSONArray JsonArray = new JSONObject(data).getJSONArray("result");
-            //String email = p.getEmail;
-
-
-
             for(int i=0;i<JsonArray.length();i++){
                 JsonObject = JsonArray.getJSONObject(i);
-                //String fcreate = (String) JsonObject.get("fcreate");
                 this.colors = pageView.toStringArray(JsonArray);
-                //if(email.equals(fcreate)) {
-                    singleParsed = (String) JsonObject.get("name");
+                singleParsed = (String) JsonObject.get("name");
                     pageView.colors[i] = singleParsed;
-                    //Log.d("****",m.tmp[i]);
                     dataParsed = dataParsed + singleParsed;
-               // }
-
-                //pageView.colors =this.colors ;
-
 
             }
             colorsLength = JsonArray.length();
-            //Page1Activity.colorsLength = this.colorsLength;
-            Log.d("4444", String.valueOf(colorsLength));
-
-            //colorsLength = JsonArray.length();
-            //pageView.colorsLength = colors.length;
 
 
         } catch (MalformedURLException e) {
@@ -88,7 +68,6 @@ public class FetchData extends AsyncTask<String, Void,String> {
             e.printStackTrace();
         }
 
-
         return null;
     }
 
@@ -97,7 +76,6 @@ public class FetchData extends AsyncTask<String, Void,String> {
     protected void onPostExecute(String s) {
         super.onPreExecute();
         //TodoActivity.test.setText(this.dataParsed);
-
        // Page1Activity.colors = this.colors;
 
     }

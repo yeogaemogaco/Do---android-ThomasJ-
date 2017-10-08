@@ -1,14 +1,8 @@
 package com.example.pc.todo;
 
-import android.app.Activity;
-import android.app.Dialog;
-import android.app.DialogFragment;
-import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.SharedPreferences;
-import android.graphics.Color;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
@@ -25,30 +19,16 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.pc.todo.MainActivity.SHARED_PREF_NAME;
 import static com.example.pc.todo.MainActivity.colorsLength;
 
 public class Page1Activity extends AppCompatActivity {
@@ -67,9 +47,10 @@ public class Page1Activity extends AppCompatActivity {
     public static String getEmail;
     FetchData process;
     public static String[] colors;
-    public static String tmp;
-    MainActivity m;
+    public static String[] groupId;
+    List<String> listViewItems;
     String groupName;
+
     private static final String groupcreate_url = "http://ruddmsdl000.cafe24.com/createnewgroup.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,9 +65,9 @@ public class Page1Activity extends AppCompatActivity {
         rotate_clock = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_clockwise);
         mContext = getApplicationContext();
         process = new FetchData();
+
         process.execute(url_suffix);
         //colorsLength = process.colorsLength;
-        Log.d("@@@", String.valueOf(colorsLength));
         colors = new String[100];
 
         mRelativeLayout = (RelativeLayout) findViewById(R.id.rl);
@@ -127,8 +108,6 @@ public class Page1Activity extends AppCompatActivity {
                             editGroupName.setText("");
                             finish();
                             startActivity(getIntent());
-
-
                         }
 
 
@@ -199,6 +178,8 @@ public class Page1Activity extends AppCompatActivity {
     private void writeItems() {
         create(groupName, getEmail);
     }
+
+
     public static String[] toStringArray(JSONArray array) {
         if(array==null)
             return null;
@@ -210,9 +191,7 @@ public class Page1Activity extends AppCompatActivity {
         return arr;
     }
 
-
-
-    }
+}
 
 
 

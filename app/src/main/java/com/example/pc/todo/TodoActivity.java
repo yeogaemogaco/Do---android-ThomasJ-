@@ -1,96 +1,101 @@
 package com.example.pc.todo;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.zip.Inflater;
 
 /**
  * Created by ola on 30/09/2017.
  */
 
-public class TodoActivity extends Activity{
-    private ArrayList<String> items;
-    private ArrayAdapter<String> itemsAdapter;
-    private ListView lvItems;
-    public Button addButton;
+public class TodoActivity extends Activity {
+    public static String[] tasks;
+
+    public CheckBox check;
+    public static String[] doDoNot;
+    TodoData todoData;
+    String url_suffix = "";
+    public static String groupname_suffix="";
+    // public String task;
+
+    ListView mListView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todo);
-        lvItems = (ListView) findViewById(R.id.lvItems);
-        items = new ArrayList<String>();
-        readItems();
+        mListView = (ListView) findViewById(R.id.lvItems);
+        url_suffix = "?fgroup="+groupname_suffix;
+        tasks = new String[100];
+        doDoNot = new String[100];
+        Log.d("url_suffix",url_suffix);
+        todoData = new TodoData();
+        todoData.execute(url_suffix);
+        TodoAdapter todoAdapter = new TodoAdapter(this,tasks,doDoNot);
+        mListView.setAdapter(todoAdapter);
+    }
+}
+class TodoAdapter extends ArrayAdapter<String>{
+    private String[] tasks;
+    private String[] doDoNot;
+    private Activity context;
 
-        itemsAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, items);
-        lvItems.setAdapter(itemsAdapter);
-        items.add("clean my room");
-        items.add("cook");
-        items.add("go to bank");
-
-        addButton = (Button)findViewById(R.id.btnAddItem);
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onAddItem(view);
-            }
-        });
-
-        setupListViewListener();
-
+    public TodoAdapter(Activity context, String[] tasks, String[] doDoNot) {
+        super(context, R.layout.todo_items,tasks);
+        this.context = context;
+        this.tasks = tasks;
+        this.doDoNot = doDoNot;
     }
 
-    public void onAddItem(View v) {
-        EditText etNewItem = (EditText) findViewById(R.id.etNewItem);
-        String itemText = etNewItem.getText().toString();
-        itemsAdapter.add(itemText);
-        etNewItem.setText("");
-        writeItems();
-    }
-    private void setupListViewListener() {
-        lvItems.setOnItemLongClickListener(
-                new AdapterView.OnItemLongClickListener() {
-                    @Override
-                    public boolean onItemLongClick(AdapterView<?> adapter,
-                                                   View item, int pos, long id) {
-                        items.remove(pos);
-                        itemsAdapter.notifyDataSetChanged();
-
-                        writeItems();
-                        return true;
-                    }
-
-                });
-    }
-    private void readItems() {
-        File filesDir = getFilesDir();
-        File todoFile = new File(filesDir, "todo.txt");
-        try {
-            items = new ArrayList<String>(FileUtils.readLines(todoFile));
-        } catch (IOException e) {
-            items = new ArrayList<String>();
+    @NonNull
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        View r = convertView;
+        TodoItems todoItems = null;
+        if(r==null) {
+            LayoutInflater layoutInflater = context.getLayoutInflater();
+            r = layoutInflater.inflate(R.layout.todo_items,null,true);
+            todoItems = new TodoItems(r);
+            r.setTag(todoItems);
         }
-    }
-
-    private void writeItems() {
-        File filesDir = getFilesDir();
-        File todoFile = new File(filesDir, "todo.txt");
-        try {
-            FileUtils.writeLines(todoFile, items);
-        } catch (IOException e) {
-            e.printStackTrace();
+        else {
+            todoItems = (TodoItems) r.getTag();
         }
+        //todoItems.task.setText(tasks);
+        //todoItems.check.setText(doDoNot[position]);
+        return r;
+    }
+}
+class TodoItems {
+    TextView task;
+    CheckBox check;
+
+    TodoItems(View view) {
+        task = (TextView) view.findViewById(R.id.taskText);
+        //check = (CheckBox) view.findViewById(R.id.taskText);
     }
 }
